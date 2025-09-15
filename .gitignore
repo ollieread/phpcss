@@ -1,3 +1,7 @@
 /output/
 /build/
 /vendor/
+composer.lock
+/wiki/
+.phpunit.result.cache
+repositories.json
