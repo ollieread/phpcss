@@ -1,0 +1,17 @@
+{
+  "name"        : "phpcss/media-queries",
+  "description" : "PhpCSS Media Query Module",
+  "type"        : "library",
+  "version"     : "3.0",
+  "autoload"    : {
+    "psr-4": {
+      "PhpCss\\Modules\\MediaQueries\\": "src"
+    },
+    "files": []
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PhpCss\\Modules\\MediaQueries\\Tests\\": "tests"
+    }
+  }
+}
