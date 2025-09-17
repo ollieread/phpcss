@@ -2,6 +2,7 @@
 /build/
 /vendor/
 composer.lock
+composer.phar
 /wiki/
 .phpunit.result.cache
 repositories.json

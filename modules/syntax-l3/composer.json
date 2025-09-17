@@ -1,0 +1,19 @@
+{
+  "name"        : "phpcss/syntax-l3",
+  "description" : "PhpCSS Syntax Module Level 3",
+  "type"        : "library",
+  "provides"    : {
+    "csswg/syntax": "3.0"
+  },
+  "autoload"    : {
+    "psr-4": {
+      "PhpCss\\Modules\\Syntax\\L3\\": "src"
+    },
+    "files": []
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PhpCss\\Modules\\Syntax\\L3\\Tests\\": "tests"
+    }
+  }
+}
