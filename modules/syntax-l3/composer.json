@@ -15,5 +15,14 @@
     "psr-4": {
       "PhpCss\\Modules\\Syntax\\L3\\Tests\\": "tests"
     }
+  },
+  "require"     : {
+    "php"         : "^8.4",
+    "ext-ctype"   : "*",
+    "ext-mbstring": "*"
+  },
+  "require-dev" : {
+    "phpunit/phpunit": "^12.0",
+    "phpstan/phpstan": "^2.1"
   }
 }
