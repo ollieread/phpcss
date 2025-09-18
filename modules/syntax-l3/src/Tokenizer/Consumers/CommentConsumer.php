@@ -25,11 +25,11 @@ class CommentConsumer implements Consumer
     public function consume(Reader $reader): Token
     {
         // Grab the starting position.
-        $position = $reader->position();
+        $position = $reader->start();
 
         // Start the comment and skip the first two characters. The assumption
         // here is that we've already checked that we can consume.
-        $comment = '/*';
+        $comment = '';
         $reader->consume(2);
 
         while (true) {
@@ -43,7 +43,6 @@ class CommentConsumer implements Consumer
             // Check if we have a */, marking the end of the comment.
             if ($char === Unicode::ASTERISK && $reader->peek(1) === Unicode::FORWARD_SLASH) {
                 // It's the end, so we append it and consume.
-                $comment .= '*/';
                 $reader->consume(2);
 
                 break;
@@ -60,7 +59,7 @@ class CommentConsumer implements Consumer
             TokenType::Comment,
             $comment,
             $position,
-            $reader->position() - $position
+            $reader->finish()
         );
     }
 
@@ -73,6 +72,6 @@ class CommentConsumer implements Consumer
      */
     public function canConsume(Reader $reader): bool
     {
-        return $reader->peek() !== Unicode::FORWARD_SLASH && $reader->peek(1) !== Unicode::ASTERISK;
+        return $reader->peek() === Unicode::FORWARD_SLASH && $reader->peek(1) === Unicode::ASTERISK;
     }
 }
