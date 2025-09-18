@@ -17,11 +17,15 @@ final readonly class Unicode
 
     const int UPPER_A = 0x41; // A
 
+    const int UPPER_E = 0x45; // E
+
     const int UPPER_F = 0x46; // F
 
     const int UPPER_Z = 0x5A; // Z
 
     const int LOWER_A = 0x61; // a
+
+    const int LOWER_E = 0x65; // e
 
     const int LOWER_F = 0x66; // f
 
@@ -36,6 +40,8 @@ final readonly class Unicode
     const int UNDERSCORE = 0x5F; // _
 
     const int HYPHEN_MINUS = 0x2D; // -
+
+    const int AT = 0x40; // @
 
     const int PLUS_SIGN = 0x2B; // +
 
@@ -54,6 +60,14 @@ final readonly class Unicode
     const int LEFT_PARENTHESIS = 0x28; // (
 
     const int RIGHT_PARENTHESIS = 0x29; // )
+
+    const int LEFT_BRACKET = 0x5B; // [
+
+    const int RIGHT_BRACKET = 0x5D; // ]
+
+    const int LEFT_BRACE = 0x7B; // {
+
+    const int RIGHT_BRACE = 0x7D; // }
 
     const int COMMA = 0x2C; // ,
 
@@ -90,4 +104,14 @@ final readonly class Unicode
     const int FULL_STOP = 0x2E; // .
 
     const int REPLACEMENT_CHARACTER = 0xFFFD; // �
+
+    const int HASH = 0x23; // #
+
+    const int LESS_THAN = 0x3C; // <
+
+    const int GREATER_THAN = 0x3E; // >
+
+    const int COLON = 0x3A; // :
+
+    const int SEMICOLON = 0x3B; // ;
 }
