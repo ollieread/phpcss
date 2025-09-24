@@ -16,11 +16,11 @@
     }
   ],
   "require"          : {
-    "php"                 : "^8.4",
-    "ext-ctype"           : "*",
-    "phpcss/media-queries": "^3.0",
-    "phpcss/selectors-l3" : "^3.0",
-    "ext-mbstring"        : "*"
+    "php"             : "^8.4",
+    "ext-ctype"       : "*",
+    "phpcss/syntax-l3": "*@dev",
+    "ext-mbstring"    : "*",
+    "ext-iconv"       : "*"
   },
   "require-dev"      : {
     "phpunit/phpunit"   : "^12.0",
@@ -55,7 +55,7 @@
   "repositories"     : {
     "syntax-l3": {
       "type": "path",
-      "url" : "modules/syntax-l3"
+      "url" : "./modules/syntax-l3"
     }
   }
 }

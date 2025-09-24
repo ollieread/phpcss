@@ -4,13 +4,14 @@ declare(strict_types=1);
 namespace PhpCss\Modules\Syntax\L3\Tokenizer\Consumers;
 
 use PhpCss\Modules\Syntax\L3\Tokenizer\Contracts\Consumer;
+use PhpCss\Modules\Syntax\L3\Tokenizer\Exceptions\ParseErrorException;
 use PhpCss\Modules\Syntax\L3\Tokenizer\Reader;
 use PhpCss\Modules\Syntax\L3\Tokenizer\Support\CodePoint;
-use PhpCss\Modules\Syntax\L3\Tokenizer\Support\Sequence;
+use PhpCss\Modules\Syntax\L3\Tokenizer\Support\Unicode;
 use PhpCss\Modules\Syntax\L3\Tokenizer\Token;
 use PhpCss\Modules\Syntax\L3\Tokenizer\TokenType;
 
-class WhitespaceConsumer implements Consumer
+class ParenthesisConsumer implements Consumer
 {
     /**
      * Consume characters from the reader and return a token.
@@ -18,14 +19,27 @@ class WhitespaceConsumer implements Consumer
      * @param \PhpCss\Modules\Syntax\L3\Tokenizer\Reader $reader
      *
      * @return \PhpCss\Modules\Syntax\L3\Tokenizer\Token
+     *
+     * @throws \PhpCss\Modules\Syntax\L3\Tokenizer\Exceptions\ParseErrorException
      */
     public function consume(Reader $reader): Token
     {
-        $position   = $reader->start();
+        $position = $reader->start();
+        $char     = $reader->peek();
+
+        if ($char === Unicode::LEFT_PARENTHESIS) {
+            $type = TokenType::OpenParenthesis;
+        } else if ($char === Unicode::RIGHT_PARENTHESIS) {
+            $type = TokenType::CloseParenthesis;
+        } else {
+            throw ParseErrorException::make('Tried to consume a parenthesis, but no parenthesis found.');
+        }
+
+        $reader->consume();
 
         return new Token(
-            TokenType::Whitespace,
-            Sequence::consumeAllWhitespace($reader),
+            $type,
+            CodePoint::toCharacter($char),
             $position,
             $reader->finish()
         );
@@ -40,6 +54,7 @@ class WhitespaceConsumer implements Consumer
      */
     public function canConsume(Reader $reader): bool
     {
-        return CodePoint::isWhitespace($reader->peek());
+        return $reader->peek() === Unicode::LEFT_PARENTHESIS
+               || $reader->peek() === Unicode::RIGHT_PARENTHESIS;
     }
 }

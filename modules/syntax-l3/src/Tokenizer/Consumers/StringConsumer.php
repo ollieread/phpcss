@@ -24,7 +24,7 @@ class StringConsumer implements Consumer
      */
     public function consume(Reader $reader): Token
     {
-        $position = $reader->position();
+        $position = $reader->start();
 
         // Grab the single or double quote we're starting with and then
         // consume it.
@@ -65,7 +65,7 @@ class StringConsumer implements Consumer
             $type,
             $value,
             $position,
-            $reader->position() - $position
+            $reader->finish()
         );
     }
 

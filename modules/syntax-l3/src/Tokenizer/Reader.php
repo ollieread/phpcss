@@ -28,6 +28,8 @@ final class Reader
      */
     private array $checkpoints = [];
 
+    private int $start = 0;
+
     /**
      * @param string $input
      */
@@ -47,6 +49,17 @@ final class Reader
         return $this->offset >= $this->length;
     }
 
+    public function get(int $offset, $length = 1): ?int
+    {
+        $substr = mb_substr($this->input, $offset, $length);
+
+        if (! empty($substr)) {
+            return mb_ord($substr, 'UTF-8');
+        }
+
+        return null;
+    }
+
     /**
      * Peek at the next character without advancing the offset.
      *
@@ -61,7 +74,7 @@ final class Reader
             return null;
         }
 
-        return mb_ord(mb_substr($this->input, $this->offset + $length, 1), 'UTF-8');
+        return $this->get($this->offset + $length);
     }
 
     /**
@@ -76,7 +89,7 @@ final class Reader
             return null;
         }
 
-        return mb_ord(mb_substr($this->input, $this->offset++, 1), 'UTF-8');
+        return $this->get($this->offset++);
     }
 
     /**
@@ -147,5 +160,19 @@ final class Reader
     public function position(): int
     {
         return $this->offset;
+    }
+
+    public function start(): int
+    {
+        return $this->start = $this->offset;
+    }
+
+    public function finish(): int
+    {
+        $diff = $this->offset - $this->start;
+
+        $this->start = $this->offset;
+
+        return $diff;
     }
 }

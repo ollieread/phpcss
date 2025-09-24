@@ -15,16 +15,11 @@
         testdox="true"
 >
     <testsuites>
-        <testsuite name="Unit">
-            <directory>./tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory>./tests/Feature</directory>
-        </testsuite>
     </testsuites>
     <source>
         <include>
             <directory suffix=".php">./src</directory>
+            <directory suffix=".php">./modules/*/src</directory>
         </include>
     </source>
     <coverage>
@@ -38,6 +33,5 @@
         <junit outputFile="build/report.junit.xml"/>
     </logging>
     <php>
-        <server name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
     </php>
 </phpunit>
